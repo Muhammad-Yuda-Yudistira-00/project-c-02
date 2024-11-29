@@ -1,0 +1,47 @@
+## **1. Autentikasi**
+- **POST** /api/auth/register: Mendaftar  
+- **POST** /api/auth/login: Login  
+- **POST** /api/auth/logout: Logout  
+- **GET** /api/auth/check-token: Cek token  
+## **2. User**
+- **GET** /api/user/profile/{username}: Profil user  
+- **GET** /api/user (Admin): Daftar user  
+- **PUT** /api/user/profile/{username}: Update profil  
+- **DELETE** /api/user/{username} (Admin): Hapus user  
+## **3. Role (Admin)**
+- **GET** /api/role: Daftar role  
+- **POST** /api/role: Tambah role  
+## **4. Room**
+- **GET** /api/room: Daftar room  
+- **GET** /api/room/{slug}: Detail room  
+- **POST** /api/room (Admin): Tambah room  
+- **PUT** /api/room/{slug} (Admin): Update room  
+- **DELETE** /api/room/{slug} (Admin): Hapus room  
+## **5. Post**
+- **GET** /api/post: Daftar postingan  
+- **GET** /api/post/{slug}: Detail postingan  
+- **POST** /api/post: Tambah postingan  
+- **PUT** /api/post/{slug}: Update postingan  
+- **DELETE** /api/post/{slug} (Admin): Hapus postingan  
+## **6. Comment**
+- **GET** /api/post/{slug}/comment: Daftar komentar  
+- **POST** /api/post/{slug}/comment: Tambah komentar  
+- **PUT** /api/comment/{comment_id}: Update komentar  
+- **DELETE** /api/comment/{comment_id}: Hapus komentar  
+## **7. Like**
+- **POST** /api/post/{slug}/like: Like postingan  
+- **POST** /api/comment/{comment_id}/like: Like komentar  
+- **DELETE** /api/post/{slug}/like: Hapus like postingan  
+- **DELETE** /api/comment/{comment_id}/like: Hapus like komentar  
+## **8. Bookmark**
+- **GET** /api/bookmark: Daftar bookmark  
+- **POST** /api/bookmark/{slug}: Tambah bookmark  
+- **DELETE** /api/bookmark/{slug}: Hapus bookmark  
+## **Admin Only**
+- **GET** /api/user  
+- **DELETE** /api/user/{username}  
+- **POST** /api/roles  
+- **POST** /api/room  
+- **PUT** /api/room/{slug}  
+- **DELETE** /api/room/{slug}  
+- **DELETE** /api/post/{slug}

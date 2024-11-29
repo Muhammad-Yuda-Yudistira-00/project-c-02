@@ -1,0 +1,29 @@
+jenis: media sosial
+
+INTI PROJECT
+POINT 1: management path
+Medsos itu bertujuan memanage komunitas dari seluruh dunia berdasarkan topik umum terlebih dahulu dan membagi lagi dalam sub topik sampai sub sub topik dan seterusnya.
+contoh:
+universal room: (room paling atas)
+root: game room, sains room, film room (room ini lebih ke promosi: pecinta anime bisa promosikan anime pada penonton k-drama / hollywood)
+sub-root: anime room, k-drama room, hollywood room, bollywood room.
+sub-root-region: anime indonesia room, anime arab room. (artinya room pecinta anime dari indonesia dan room dari arab)
+sub-root-genre: anime action, anime fantasy, anime isekai
+sub-root-studio: ghibli, madhouse, dll.
+sub-root-fandom: naruto room, one piece room, dll.
+
+POINT 2: sharing & integration
+integrasi dengan medsos lain (youtube, instagram, x, thread, whatsapp, line, telegram, discord, twitch) harus mudah dan aplikasi kita sebagai pusatnya. (ini untuk content creator, streamer, influencer berbagi kontennya dari medsos lain)
+
+POINT 3: filosofi 
+semua topik boleh ada kecuali yang mengandung kekerasan, rasis. selama tidak menyakiti orang lain, diri sendiri dan mencampuri urusan orang lain ga masalah.
+
+POINT 4: design aplikasi 
+design yang modern. ada 2 versi: versi modern dengan animasi dan effect keren, versi hemat dengan tampilan clean, simple. multi-platform: web, apk mobile, apk desktop. support all os.
+
+tech stack:
+- laravel
+- vite
+- tailwindcss, flowbite
+- mysql
+

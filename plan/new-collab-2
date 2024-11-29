@@ -1,0 +1,22 @@
+database struktur
+
+room
+- id (INT, Primary Key)
+- slug (VARCHAR(50), Unique)
+- name (VARCHAR(50))
+- category (nullable)
+- parent_room_id (nullable)
+- parent_category_id (nullable)
+
+post
+- id (INT, Primary Key)
+- slug (VARCHAR(255), Unique)
+- user_id (INT, Foreign Key)
+- room_id (INT, Foreign Key)
+- title (VARCHAR(255))
+- content (TEXT)
+- comment_count (INT, Default 0) *(jumlah komentar pada post)
+- like_count (INT, Default 0) *(jumlah like pada post)
+- created_at (TIMESTAMP)
+- updated_at (TIMESTAMP)
+- deleted_at (TIMESTAMP, NULL)
