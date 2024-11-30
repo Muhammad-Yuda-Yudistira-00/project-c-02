@@ -10,7 +10,7 @@ import { Button } from "flowbite-react";
 
 
 export function MyNavbar() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState('yudi');
 
   return (
       <Navbar fluid rounded className="fixed w-screen top-0 left-0">

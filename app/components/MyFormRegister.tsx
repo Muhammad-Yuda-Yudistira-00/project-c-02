@@ -11,19 +11,19 @@ export default function MyFormRegister() {
         <div className="mb-2 block">
           <Label htmlFor="email2" value="Your email" />
         </div>
-        <TextInput id="email2" type="email" placeholder="name@flowbite.com" required shadow />
+        <TextInput id="email2" name="email" type="email" placeholder="name@flowbite.com" required shadow />
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="password2" value="Your password" />
         </div>
-        <TextInput id="password2" type="password" required shadow />
+        <TextInput id="password2" name="password" type="password" required shadow />
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="repeat-password" value="Repeat password" />
         </div>
-        <TextInput id="repeat-password" type="password" required shadow />
+        <TextInput id="repeat-password" name="repeat_password" type="password" required shadow />
       </div>
       <div className="flex items-center gap-2">
         <Checkbox id="agree" />
