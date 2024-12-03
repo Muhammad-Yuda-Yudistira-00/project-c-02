@@ -16,13 +16,13 @@ export default function UniversalRoom()
 					<MyBreadcrumb></MyBreadcrumb>
 				</div>
 				<div className="mt-12 fixed text-center w-auto bg-amber-300 w-full top-14 shadow-sm">
-					<h3 class="text-3xl font-bold dark:text-white text-white">Film Room</h3>
+					<h3 className="text-3xl font-bold dark:text-white text-white">Film Room</h3>
 				</div>
 				<div className="mt-20">
 					<div className="w-full py-4">
 						<MyTextArea />
 					</div>
-					<content>
+					<div>
 						<MyCard />
 						<MyCard />
 						<MyCard />
@@ -31,7 +31,7 @@ export default function UniversalRoom()
 						<MyCard />
 						<MyCard />
 						<MyCard />
-					</content>
+					</div>
 				</div>
 			</main>
 		</div>

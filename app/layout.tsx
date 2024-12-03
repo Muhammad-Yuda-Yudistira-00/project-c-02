@@ -3,16 +3,16 @@ import localFont from "next/font/local";
 import "./globals.css";
 import {MyNavbar} from "./components/MyNavbar";
 import { Flowbite } from "flowbite-react";
-import type { CustomFlowbiteTheme } from "flowbite-react";
+// import type { CustomFlowbiteTheme } from "flowbite-react";
 
-const customTheme: CustomFlowbiteTheme = {
-  "root": {
-    "base": "bg-yellow-300",
-    "collapse": {
-      "list": "items-center"
-    }
-  }
-}
+// const customTheme: CustomFlowbiteTheme = {
+//   "root": {
+//     "base": "bg-yellow-300",
+//     "collapse": {
+//       "list": "items-center"
+//     }
+//   }
+// }
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,12 +40,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased mt-14 mx-4`}
       >
-        <Flowbite theme={{ theme: customTheme }}>
+        {/*<Flowbite theme={{ theme: customTheme }}>*/}
           <div className="min-h-screen">
             <MyNavbar></MyNavbar>
             {children}
           </div>
-        </Flowbite>
+        {/*</Flowbite>*/}
       </body>
     </html>
   );

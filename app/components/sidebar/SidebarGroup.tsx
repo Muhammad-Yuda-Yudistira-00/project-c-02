@@ -13,8 +13,15 @@ import {
 } from "react-icons/hi";
 import { BiBuoy } from "react-icons/bi";
 import { twMerge } from "tailwind-merge";
+import { ReactNode } from "react";
 
-export default function SidebarGroup({children, name, root = false})
+interface SidebarGroupProps {
+  children: ReactNode;
+  name: string;
+  root?: boolean;
+}
+
+export default function SidebarGroup({children, name, root = false}: SidebarGroupProps)
 {
 	return (
 			

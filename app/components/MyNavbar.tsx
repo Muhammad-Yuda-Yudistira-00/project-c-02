@@ -3,7 +3,6 @@
 
 import Link from "next/link";
 import { Navbar, Avatar, Flowbite } from "flowbite-react";
-import {MyAvatar} from "./MyAvatar";
 import React, { useState } from 'react';
 import { Button } from "flowbite-react";
 import {UserDropdown} from "./user/UserDropdown";
