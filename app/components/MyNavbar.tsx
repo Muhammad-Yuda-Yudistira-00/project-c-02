@@ -24,10 +24,8 @@ export function MyNavbar() {
             Home
           </Navbar.Link>
           <Navbar.Link href="#">Contact</Navbar.Link>
-          {user ? <UserDropdown>
-            <div className="flex flex-wrap gap-2 bg-amber-400 pr-8 pl-2 rounded-l-full">
+          {user ? <UserDropdown>            
               <Avatar img="https://avatar.iran.liara.run/public/job/farmer/male" alt="avatar of Jese" rounded className="border-2 rounded-full border-indigo-800" />
-            </div>
           </UserDropdown> : (
         <span className="flex text-slate-700">
           <Navbar.Link href="/register" as={Link} className="text-slate-700">
