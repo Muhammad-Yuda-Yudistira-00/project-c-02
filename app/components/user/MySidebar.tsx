@@ -28,7 +28,21 @@ const sidebarData = [
   { id: 13, parent_id: 11, label: "Mathimatic Room", icon: "HiOutlineCube", href: "#", hole: true }
 ];
 
-const RenderSidebarItems = ({ parentId, sidebarData }) => {
+interface SidebarItem {
+  id: number;
+  parent_id: number | null;
+  label: string;
+  icon: string;
+  href: string;
+  hole: boolean;
+}
+
+interface RenderSidebarItemsProps {
+  parentId: number | null;
+  sidebarData: SidebarItem[];
+}
+
+const RenderSidebarItems: React.FC<RenderSidebarItemsProps> = ({ parentId, sidebarData }) => {
   return (
     <>
       {sidebarData
