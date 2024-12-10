@@ -10,13 +10,14 @@ interface SidebarGroupProps {
   children: ReactNode;
   name: string;
   icon: string;
+  defaultOpen?: boolean;
 }
 
-export default function SidebarGroup({children, name, icon}: SidebarGroupProps)
+export default function SidebarGroup({children, name, icon, defaultOpen = true}: SidebarGroupProps)
 {
 	return (
 			
-	          <Sidebar.Collapse icon={HiOfficeBuilding} label={name} className="border-b-2 border-red-400">
+	          <Sidebar.Collapse icon={HiOfficeBuilding} label={name} open={defaultOpen} className="border-b-2 border-red-400">
 	            {children}
 	          </Sidebar.Collapse>
 			)
