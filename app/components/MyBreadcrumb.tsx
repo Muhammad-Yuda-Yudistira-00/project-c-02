@@ -4,18 +4,6 @@
 import { Breadcrumb } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 
-function getBreadcrumbPath(slug, data) {
-  const path = [];
-  let current = data.find(item => item.slug === slug);
-
-  while (current) {
-    path.unshift(current); // Tambahkan elemen ke awal array
-    current = data.find(item => item.id === current.parent_id); // Cari parent berdasarkan parent_id
-  }
-
-  return path; // Kembalikan array breadcrumb dari root ke elemen saat ini
-}
-
 interface SidebarItem {
   id: number;
   parent_id: number | null;
@@ -23,14 +11,28 @@ interface SidebarItem {
   icon: string;
   href: string;
   hole: boolean;
+  slug: string;
 }
+
+function getBreadcrumbPath(slug: string, data: SidebarItem[]): SidebarItem[] {
+    const path: SidebarItem[] = [];
+  let current = data.find(item => item.slug === slug);
+
+  while (current) {
+    path.unshift(current); // Tambahkan elemen ke awal array
+    current = data.find(item => item.id === current?.parent_id); // Cari parent berdasarkan parent_id
+  }
+
+  return path; // Kembalikan array breadcrumb dari root ke elemen saat ini
+}
+
 
 interface MyBreadcrumbProps {
   slug: string;
   sidebarData: SidebarItem[];
 }
 
-export function MyBreadcrumb({slug, sidebarData}) {
+export function MyBreadcrumb({slug, sidebarData}: MyBreadcrumbProps) {
   const breadcrumbPath = getBreadcrumbPath(slug, sidebarData);
 
   return (
@@ -39,7 +41,7 @@ export function MyBreadcrumb({slug, sidebarData}) {
         <Breadcrumb.Item
           key={item.id}
           href={item.href} // Menggunakan `href` dari item
-          icon={index === 0 ? HiHome : null} // Ikon hanya untuk elemen pertama
+          icon={index === 0 ? HiHome : undefined} // Ikon hanya untuk elemen pertama
         >
           {item.label}
         </Breadcrumb.Item>

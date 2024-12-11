@@ -55,13 +55,14 @@ interface SidebarItem {
   icon: string;
   href: string;
   hole: boolean;
+  slug: string;
 }
 
 interface MySidebarProps {
-  sidebarData: sidebarItem[];
+  sidebarData: SidebarItem[];
 }
 
-export function MySidebar({sidebarData}) {
+export function MySidebar({sidebarData}: MySidebarProps) {
   return (
     <Sidebar aria-label="Sidebar with multi-level dropdown example" className="max-h-screen fixed max-w-min">
       <Sidebar.Items>

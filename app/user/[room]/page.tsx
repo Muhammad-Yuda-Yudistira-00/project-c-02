@@ -22,12 +22,13 @@ const sidebarData = [
   { id: 13, parent_id: 11, label: "Mathimatic Room", icon: "HiOutlineCube", href: "#", hole: true, slug: "mathimatic-room" }
 ];
 
+
 export default function RoomPage()
 {
   const params = useParams(); // Mengambil parameter dari URL
   const room = params.room;
 
-  function activeRoom(slug) {
+  function activeRoom(slug: string) {
     const room = sidebarData.find(data => data.slug === slug); // Cari elemen yang cocok
     return room ? room.label : "Room not found"; // Kembalikan label jika ditemukan, atau pesan default
   }
@@ -39,10 +40,10 @@ export default function RoomPage()
       </aside>
       <main className="bg-purple-300 flex-auto mt-2">
         <div className="ml-0 w-full fixed">
-          <MyBreadcrumb slug={room} sidebarData={sidebarData}></MyBreadcrumb>
+          <MyBreadcrumb slug={room as string} sidebarData={sidebarData}></MyBreadcrumb>
         </div>
         <div className="mt-12 fixed text-center w-auto bg-amber-300 w-full top-14 shadow-sm">
-          <h3 className="text-3xl font-bold dark:text-white text-white">{activeRoom(room)}</h3>
+          <h3 className="text-3xl font-bold dark:text-white text-white">{activeRoom(room as string)}</h3>
         </div>
         <div className="mt-20">
           <div className="w-full py-4">
