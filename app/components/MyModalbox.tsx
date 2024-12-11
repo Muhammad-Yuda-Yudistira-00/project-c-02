@@ -7,7 +7,7 @@ import { MyTextArea } from "./MyTextArea";
 
 
 export function MyModalbox() {
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
