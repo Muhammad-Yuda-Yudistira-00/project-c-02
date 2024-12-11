@@ -20,10 +20,10 @@ export function MyNavbar() {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Navbar.Link href="/" active>
+          <Navbar.Link className="h-full w-full flex justify-center items-center" href="/" active>
             Home
           </Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
+          <Navbar.Link className="h-full w-full flex justify-center items-center" href="#">Contact</Navbar.Link>
           {user ? <UserDropdown>            
               <Avatar img="https://avatar.iran.liara.run/public/job/farmer/male" alt="avatar of Jese" rounded className="border-2 rounded-full border-indigo-800" />
           </UserDropdown> : (
