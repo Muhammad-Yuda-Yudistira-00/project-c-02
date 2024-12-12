@@ -43,7 +43,7 @@ export default function RoomPage()
           <MyBreadcrumb slug={room as string} sidebarData={sidebarData}></MyBreadcrumb>
         </div>
         <div className="mt-12 fixed text-center w-auto bg-amber-300 w-full top-14 shadow-sm">
-          <h3 className="text-3xl font-bold dark:text-white text-white">{activeRoom(room as string)}</h3>
+          <h3 className="text-3xl font-bold dark:text-white text-white">{room ? activeRoom(room as string) : "Universal Room"}</h3>
         </div>
         <div className="mt-20">
           <div className="w-full py-4">

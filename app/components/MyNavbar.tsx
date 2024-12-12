@@ -10,7 +10,7 @@ import {UserDropdown} from "./user/UserDropdown";
 
 
 export function MyNavbar() {
-    const [user, setUser] = useState('yudi');
+    const [user, setUser] = useState("yudi");
 
   return (
       <Navbar fluid rounded className="fixed w-screen top-0 left-0 shadow-lg z-20">

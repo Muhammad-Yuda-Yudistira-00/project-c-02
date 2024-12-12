@@ -1,0 +1,6 @@
+titik: backend programmer
+jidan: frontend programmer | layouting & design
+yudi: project manager & frontend programmer | membuat fitur baru
+kiki: designer (belum pasti)
+
+catatan:
