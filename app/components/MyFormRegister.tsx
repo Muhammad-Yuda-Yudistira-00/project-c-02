@@ -16,13 +16,13 @@ export default function MyFormRegister() {
 
 
   // Handle perubahan input
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   // Submit form
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Mencegah reload halaman
       const { repeat_password, ...validData } = formData; // Hapus repeat_password
 
@@ -35,11 +35,19 @@ export default function MyFormRegister() {
         "x-api-key": process.env.NEXT_PUBLIC_API_SECRET_KEY,
       });
 
-      const response = await fetch(`https://cors-anywhere.herokuapp.com/${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, {
+      const apiKey = process.env.NEXT_PUBLIC_API_SECRET_KEY;
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+      if (!apiKey || !apiUrl) {
+        console.error("API key atau URL tidak ditemukan di environment variables.");
+        return;
+      }
+
+      const response = await fetch(`${apiUrl}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": process.env.NEXT_PUBLIC_API_SECRET_KEY,
+          "x-api-key": apiKey, // Pastikan hanya string yang dikirim
         },
         body: JSON.stringify(validData),
       });
