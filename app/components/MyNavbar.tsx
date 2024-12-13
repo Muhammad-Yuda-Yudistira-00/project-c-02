@@ -13,8 +13,7 @@ export function MyNavbar() {
   const router = useRouter();
   const pathname = usePathname();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedUser = localStorage.getItem('user');
@@ -25,7 +24,6 @@ export function MyNavbar() {
           // Coba parse JSON, jika berhasil simpan ke dalam state
           const data = JSON.parse(storedUser);
           setUser(data);
-          console.log(user + " dan " + data)
         } catch (error) {
           console.error("Terjadi kesalahan saat parsing data user:", error);
           // Handle error, misalnya hapus data dari localStorage atau set user ke nilai default
@@ -33,11 +31,10 @@ export function MyNavbar() {
       } else {
         // Jika storedUser adalah null, set user ke null
         setUser(null);
-        console.log(user + " Test")
+        
       }
-      setLoading(false)
+      
     }
-    console.log(user + " Test1,")
   }, [pathname]);
 
   const handleLogout = () => {
@@ -60,8 +57,6 @@ export function MyNavbar() {
             Home
           </Navbar.Link>
           <Navbar.Link className="h-full w-full flex justify-center items-center" href="#">Contact</Navbar.Link>
-          {!loading && (
-            <>
           {user ? <UserDropdown handleLogout={handleLogout}>            
               <Avatar img="https://avatar.iran.liara.run/public/job/farmer/male" alt="avatar of Jese" rounded className="border-2 rounded-full border-indigo-800" />
           </UserDropdown> : (
@@ -77,8 +72,6 @@ export function MyNavbar() {
           </Navbar.Link>
         </span>
       )}
-        </>
-         )}
         </Navbar.Collapse>
       </Navbar>
   );
