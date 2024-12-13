@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 export function MyNavbar() {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -31,6 +32,7 @@ export function MyNavbar() {
         // Jika storedUser adalah null, set user ke null
         setUser(null);
       }
+      setLoading(false)
     }
   }, [router]);
 
@@ -40,6 +42,10 @@ export function MyNavbar() {
       setUser(null) 
       router.push('/login')
     }
+  }
+
+  if(loading) {
+    return null;
   }
 
   return (
