@@ -6,11 +6,12 @@ import { Navbar, Avatar, Flowbite } from "flowbite-react";
 import React, { useState, useEffect } from 'react';
 import { Button } from "flowbite-react";
 import {UserDropdown} from "./user/UserDropdown";
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname} from 'next/navigation';
 
 
 export function MyNavbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +38,7 @@ export function MyNavbar() {
       setLoading(false)
     }
     console.log(user + " Test1,")
-  }, [router]);
+  }, [pathname]);
 
   const handleLogout = () => {
     if(user) {
