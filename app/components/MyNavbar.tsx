@@ -32,7 +32,7 @@ export function MyNavbar() {
       } else {
         // Jika storedUser adalah null, set user ke null
         setUser(null);
-        console.log(user + " dan " + data)
+        console.log(user + " Test")
       }
       setLoading(false)
     }
