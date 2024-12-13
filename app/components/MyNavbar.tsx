@@ -7,12 +7,40 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "flowbite-react";
 import {UserDropdown} from "./user/UserDropdown";
 import { useRouter } from 'next/navigation';
-import { useLocalStorage } from 'react-localstorage';
 
 
 export function MyNavbar() {
   const router = useRouter();
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedUser = localStorage.getItem('user');
+
+      // Periksa apakah storedUser bukan null
+      if (storedUser) {
+        try {
+          // Coba parse JSON, jika berhasil simpan ke dalam state
+          const data = JSON.parse(storedUser);
+          setUser(data);
+        } catch (error) {
+          console.error("Terjadi kesalahan saat parsing data user:", error);
+          // Handle error, misalnya hapus data dari localStorage atau set user ke nilai default
+        }
+      } else {
+        // Jika storedUser adalah null, set user ke null
+        setUser(null);
+      }
+    }
+  }, []);
+
+  const handleLogout = () => {
+    if(user) {
+      localStorage.removeItem('user')
+      setUser(null)
+      router.push('/login')
+    }
+  }
 
   return (
       <Navbar fluid rounded className="fixed w-screen top-0 left-0 shadow-lg z-20">
@@ -26,7 +54,7 @@ export function MyNavbar() {
             Home
           </Navbar.Link>
           <Navbar.Link className="h-full w-full flex justify-center items-center" href="#">Contact</Navbar.Link>
-          {user ? <UserDropdown>            
+          {user ? <UserDropdown handleLogout={handleLogout}>            
               <Avatar img="https://avatar.iran.liara.run/public/job/farmer/male" alt="avatar of Jese" rounded className="border-2 rounded-full border-indigo-800" />
           </UserDropdown> : (
         <span className="flex text-slate-700">

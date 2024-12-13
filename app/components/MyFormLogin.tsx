@@ -3,7 +3,6 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, {useState} from "react";
 import { useRouter } from 'next/navigation';
-import { useLocalStorage } from 'react-localstorage';
 
 
 export default function MyFormLogin()
@@ -49,6 +48,7 @@ export default function MyFormLogin()
         const result = await response.json();
         console.log("Data berhasil dikirim:", result);
         // Lakukan sesuatu setelah berhasil (misalnya redirect atau tampilkan pesan)
+        localStorage.setItem('user', JSON.stringify(result))
         router.push('/user/universal-room');
       } else {
         const errorText = await response.text();
