@@ -32,12 +32,12 @@ export function MyNavbar() {
         setUser(null);
       }
     }
-  }, []);
+  }, [router]);
 
   const handleLogout = () => {
     if(user) {
       localStorage.removeItem('user')
-      setUser(null)
+      setUser(null) 
       router.push('/login')
     }
   }
