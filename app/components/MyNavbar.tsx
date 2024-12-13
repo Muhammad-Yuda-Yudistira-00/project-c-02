@@ -34,7 +34,7 @@ export function MyNavbar() {
       }
       setLoading(false)
     }
-  }, [router]);
+  }, []);
 
   const handleLogout = () => {
     if(user) {
@@ -42,10 +42,6 @@ export function MyNavbar() {
       setUser(null) 
       router.push('/login')
     }
-  }
-
-  if(loading) {
-    return null;
   }
 
   return (
@@ -60,6 +56,8 @@ export function MyNavbar() {
             Home
           </Navbar.Link>
           <Navbar.Link className="h-full w-full flex justify-center items-center" href="#">Contact</Navbar.Link>
+          {!loading && (
+            <>
           {user ? <UserDropdown handleLogout={handleLogout}>            
               <Avatar img="https://avatar.iran.liara.run/public/job/farmer/male" alt="avatar of Jese" rounded className="border-2 rounded-full border-indigo-800" />
           </UserDropdown> : (
@@ -75,6 +73,8 @@ export function MyNavbar() {
           </Navbar.Link>
         </span>
       )}
+        </>
+         )}
         </Navbar.Collapse>
       </Navbar>
   );
