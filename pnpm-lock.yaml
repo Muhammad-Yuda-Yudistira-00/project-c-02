@@ -26,6 +26,9 @@ importers:
       react-icons:
         specifier: ^5.3.0
         version: 5.3.0(react@18.3.1)
+      react-localstorage:
+        specifier: ^1.0.0
+        version: 1.0.0
       tailwind-merge:
         specifier: ^2.5.5
         version: 2.5.5
@@ -1371,6 +1374,9 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  react-localstorage@1.0.0:
+    resolution: {integrity: sha512-SxB6UmK+z8YsAfdWxXIciJaXsliysSZkiUMcHm6vMvqV7A/fXe5NTmXGTevkk21ZZePLH0vvBH9SxsmJloNknA==}
 
   react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
@@ -3127,6 +3133,8 @@ snapshots:
       react: 18.3.1
 
   react-is@16.13.1: {}
+
+  react-localstorage@1.0.0: {}
 
   react@18.3.1:
     dependencies:

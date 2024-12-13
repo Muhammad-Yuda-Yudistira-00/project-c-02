@@ -3,9 +3,11 @@
 
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import Link from "next/link";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { useRouter } from 'next/navigation'
 
 export default function MyFormRegister() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -13,7 +15,6 @@ export default function MyFormRegister() {
     password: "",
     repeat_password: "",
   });
-
 
   // Handle perubahan input
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,17 +25,10 @@ export default function MyFormRegister() {
   // Submit form
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Mencegah reload halaman
-      const { repeat_password, ...validData } = formData; // Hapus repeat_password
 
     // Kirim data ke API
     try {
-      console.log("Form data:", validData);
-      console.log("Endpoint:", `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`);
-      console.log("Headers:", {
-        "Content-Type": "application/json",
-        "x-api-key": process.env.NEXT_PUBLIC_API_SECRET_KEY,
-      });
-
+      const { repeat_password, ...validData } = formData; // Hapus repeat_password
       const apiKey = process.env.NEXT_PUBLIC_API_SECRET_KEY;
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -47,8 +41,10 @@ export default function MyFormRegister() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": apiKey, // Pastikan hanya string yang dikirim
-        },
+          Accept: "application/json",
+          "x-api-key":
+            apiKey,
+              },
         body: JSON.stringify(validData),
       });
 
@@ -56,6 +52,7 @@ export default function MyFormRegister() {
         const result = await response.json();
         console.log("Data berhasil dikirim:", result);
         // Lakukan sesuatu setelah berhasil (misalnya redirect atau tampilkan pesan)
+        router.push('/user/universal-room');
       } else {
         const errorText = await response.text();
         console.error("Gagal mengirim data:", response.statusText, errorText);
@@ -97,15 +94,6 @@ export default function MyFormRegister() {
         </div>
         <TextInput id="repeat-password" name="repeat_password" type="password" required shadow value={formData.repeat_password} onChange={handleChange} />
       </div>
-      {/*<div className="flex items-center gap-2">
-        <Checkbox id="agree" />
-        <Label htmlFor="agree" className="flex">
-          I agree with the&nbsp;
-          <Link href="#" className="text-cyan-600 hover:underline dark:text-cyan-500">
-            terms and conditions
-          </Link>
-        </Label>
-      </div>*/}
       <Button type="submit">Register new account</Button>
     </form>
   );

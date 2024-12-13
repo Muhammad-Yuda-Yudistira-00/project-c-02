@@ -3,14 +3,16 @@
 
 import Link from "next/link";
 import { Navbar, Avatar, Flowbite } from "flowbite-react";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "flowbite-react";
 import {UserDropdown} from "./user/UserDropdown";
-
+import { useRouter } from 'next/navigation';
+import { useLocalStorage } from 'react-localstorage';
 
 
 export function MyNavbar() {
-    const [user, setUser] = useState("yudi");
+  const router = useRouter();
+  const [user, setUser] = useState(null);
 
   return (
       <Navbar fluid rounded className="fixed w-screen top-0 left-0 shadow-lg z-20">
@@ -33,7 +35,7 @@ export function MyNavbar() {
           </Navbar.Link>
           <span className="mx-2">/</span>
           <Navbar.Link as={Link} href="/login">
-            <Button color="success" size="xs" type="button" className="">
+            <Button color="success" size="xs" type="button">
               Login
             </Button>
           </Navbar.Link>
