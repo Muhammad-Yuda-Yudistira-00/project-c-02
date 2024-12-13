@@ -24,6 +24,7 @@ export function MyNavbar() {
           // Coba parse JSON, jika berhasil simpan ke dalam state
           const data = JSON.parse(storedUser);
           setUser(data);
+          console.log(user + " dan " + data)
         } catch (error) {
           console.error("Terjadi kesalahan saat parsing data user:", error);
           // Handle error, misalnya hapus data dari localStorage atau set user ke nilai default
@@ -34,7 +35,7 @@ export function MyNavbar() {
       }
       setLoading(false)
     }
-  }, []);
+  }, [router, localStorage]);
 
   const handleLogout = () => {
     if(user) {
