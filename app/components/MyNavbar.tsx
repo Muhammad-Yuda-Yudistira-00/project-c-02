@@ -36,7 +36,8 @@ export function MyNavbar() {
       }
       setLoading(false)
     }
-  }, [router, localStorage]);
+    console.log(user + " Test1,")
+  }, []);
 
   const handleLogout = () => {
     if(user) {
