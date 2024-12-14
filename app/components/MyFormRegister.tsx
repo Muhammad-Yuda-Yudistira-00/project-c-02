@@ -4,10 +4,12 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import Link from "next/link";
 import React, {useState, useEffect} from "react";
+import handleAuthSubmit from "@/app/logic/handleAuthSubmit";
 import { useRouter } from 'next/navigation'
 
 export default function MyFormRegister() {
-  const router = useRouter()
+  const router = useRouter();
+  const path = "register";
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -22,46 +24,18 @@ export default function MyFormRegister() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Submit form
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Mencegah reload halaman
-
-    // Kirim data ke API
+    e.preventDefault(); // Prevent default form submission
     try {
-      const { repeat_password, ...validData } = formData; // Hapus repeat_password
-      const apiKey = process.env.NEXT_PUBLIC_API_SECRET_KEY;
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-      if (!apiKey || !apiUrl) {
-        console.error("API key atau URL tidak ditemukan di environment variables.");
-        return;
-      }
-
-      const response = await fetch(`${apiUrl}/api/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "x-api-key":
-            apiKey,
-              },
-        body: JSON.stringify(validData),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Data berhasil dikirim:", result);
-        // Lakukan sesuatu setelah berhasil (misalnya redirect atau tampilkan pesan)
-        localStorage.setItem("user", JSON.stringify(result));
-        router.push('/user/universal-room');
-      } else {
-        const errorText = await response.text();
-        console.error("Gagal mengirim data:", response.statusText, errorText);
-      }
+      await handleAuthSubmit({ formData, path, router }); // Assuming handleSubmit takes formData
+      // Handle successful registration (e.g., redirect, message)
     } catch (error) {
-      console.error("Error saat mengirim data:", error);
+      console.error("Error submitting form:", error);
+      // Handle error (e.g., display error message)
     }
   };
+
+
 
   return (
     <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit}>

@@ -1,12 +1,16 @@
-import MyFormRegister from './../components/MyFormRegister';
+"use client";
 
-export default function Register()
+import React from 'react';
+import MyFormLogin from "@/app/components/MyFormLogin"; 
+
+
+export default function login()
 {
 	return(
 		<div className="flex justify-center items-center bg-purple-300 min-h-screen">
 			<div className="w-1/2 m-auto p-0 flex justify-center">
-				<MyFormRegister />
+				<MyFormLogin></MyFormLogin>
 			</div>
 		</div>
-		)
+		);
 }

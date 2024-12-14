@@ -3,11 +3,13 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, {useState} from "react";
 import { useRouter } from 'next/navigation';
+import handleAuthSubmit from "@/app/logic/handleAuthSubmit";
 
 
 export default function MyFormLogin()
 {
   const router = useRouter()
+  const path = 'login';
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,41 +23,13 @@ export default function MyFormLogin()
 
    // Submit form
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Mencegah reload halaman
-
-    // Kirim data ke API
+    e.preventDefault(); // Prevent default form submission
     try {
-      const apiKey = process.env.NEXT_PUBLIC_API_SECRET_KEY;
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-      if (!apiKey || !apiUrl) {
-        console.error("API key atau URL tidak ditemukan di environment variables.");
-        return;
-      }
-
-      const response = await fetch(`${apiUrl}/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "x-api-key":
-            apiKey,
-              },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Data berhasil dikirim:", result);
-        // Lakukan sesuatu setelah berhasil (misalnya redirect atau tampilkan pesan)
-        localStorage.setItem('user', JSON.stringify(result))
-        router.push('/user/universal-room');
-      } else {
-        const errorText = await response.text();
-        console.error("Gagal mengirim data:", response.statusText, errorText);
-      }
+      await handleAuthSubmit({ formData, path, router }); // Assuming handleSubmit takes formData
+      // Handle successful registration (e.g., redirect, message)
     } catch (error) {
-      console.error("Error saat mengirim data:", error);
+      console.error("Error submitting form:", error);
+      // Handle error (e.g., display error message)
     }
   };
 

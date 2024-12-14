@@ -41,7 +41,7 @@ export function MyNavbar() {
     if(user) {
       localStorage.removeItem('user')
       setUser(null) 
-      router.push('/login')
+      router.push('/auth/login')
     }
   }
 
@@ -61,11 +61,11 @@ export function MyNavbar() {
               <Avatar img="https://avatar.iran.liara.run/public/job/farmer/male" alt="avatar of Jese" rounded className="border-2 rounded-full border-indigo-800" />
           </UserDropdown> : (
         <span className="flex text-slate-700">
-          <Navbar.Link href="/register" as={Link} className="text-slate-700">
+          <Navbar.Link href="/auth/register" as={Link} className="text-slate-700">
             <small className="inline-block">register</small>
           </Navbar.Link>
           <span className="mx-2">/</span>
-          <Navbar.Link as={Link} href="/login">
+          <Navbar.Link as={Link} href="/auth/login">
             <Button color="success" size="xs" type="button">
               Login
             </Button>
