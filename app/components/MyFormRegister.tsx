@@ -14,8 +14,7 @@ export default function MyFormRegister() {
     name: "",
     username: "",
     email: "",
-    password: "",
-    repeat_password: "",
+    password: ""
   });
 
   // Handle perubahan input
@@ -62,12 +61,6 @@ export default function MyFormRegister() {
           <Label htmlFor="password2" value="Your password" />
         </div>
         <TextInput id="password2" name="password" type="password" required shadow value={formData.password} onChange={handleChange} />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="repeat-password" value="Repeat password" />
-        </div>
-        <TextInput id="repeat-password" name="repeat_password" type="password" required shadow value={formData.repeat_password} onChange={handleChange} />
       </div>
       <Button type="submit">Register new account</Button>
     </form>

@@ -1,10 +1,11 @@
  import React from "react";
+ import { FormData } from "@/app/store/FormData";
 
  // Submit form
-  const handleAuthSubmit = async ({formData, path, router}) => {
+  const handleAuthSubmit = async ({ formData, path, router }: { formData: FormData, path: string, router: any }) => {
     // Kirim data ke API
+    console.log('formData:', formData);
     try {
-      const { repeat_password, ...validData } = formData; // Hapus repeat_password
       const apiKey = process.env.NEXT_PUBLIC_API_SECRET_KEY;
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -21,7 +22,7 @@
           "x-api-key":
             apiKey,
               },
-        body: JSON.stringify(validData),
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {

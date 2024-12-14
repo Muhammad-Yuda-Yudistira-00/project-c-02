@@ -3,6 +3,7 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, {useState} from "react";
 import { useRouter } from 'next/navigation';
+ import { NextRouter } from 'next/router';
 import handleAuthSubmit from "@/app/logic/handleAuthSubmit";
 
 
@@ -25,7 +26,7 @@ export default function MyFormLogin()
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission
     try {
-      await handleAuthSubmit({ formData, path, router }); // Assuming handleSubmit takes formData
+      await handleAuthSubmit({ formData, path, router }) // Assuming handleSubmit takes formData
       // Handle successful registration (e.g., redirect, message)
     } catch (error) {
       console.error("Error submitting form:", error);
