@@ -4,36 +4,48 @@
 import { Breadcrumb } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 
-interface SidebarItem {
+interface RoomItem {
   id: number;
   parent_id: number | null;
-  label: string;
-  icon: string;
-  href: string;
-  hole: boolean;
+  name: string;
+  category: string;
   slug: string;
+  children: RoomItem[];
 }
 
-function getBreadcrumbPath(slug: string, data: SidebarItem[]): SidebarItem[] {
-    const path: SidebarItem[] = [];
-  let current = data.find(item => item.slug === slug);
+function getBreadcrumbPath(slug: string, data: RoomItem[]): RoomItem[] {
+    let path: RoomItem[] = [];
 
-  while (current) {
-    path.unshift(current); // Tambahkan elemen ke awal array
-    current = data.find(item => item.id === current?.parent_id); // Cari parent berdasarkan parent_id
-  }
+    function findRoomAndBuildPath(slug: string, data: RoomItem[], currentPath: RoomItem[]): boolean {
+        for (const item of data) {
+            const newPath = [...currentPath, item]; // Membuat salinan path yang ada dan menambahkan item saat ini
+            if (item.slug === slug) {
+                path = newPath;
+                return true; // Room ditemukan
+            }
 
-  return path; // Kembalikan array breadcrumb dari root ke elemen saat ini
+            if (item.children && item.children.length > 0) {
+                if (findRoomAndBuildPath(slug, item.children, newPath)) {
+                    return true; // Room ditemukan di children
+                }
+            }
+        }
+        return false; // Room tidak ditemukan di cabang ini
+    }
+
+    findRoomAndBuildPath(slug, data, []);
+    console.log(path) //datanya sudah ada kenapa tidak muncuk sebagai UI???
+    return path;
 }
 
 
 interface MyBreadcrumbProps {
   slug: string;
-  sidebarData: SidebarItem[];
+  rooms: RoomItem[];
 }
 
-export function MyBreadcrumb({slug, sidebarData}: MyBreadcrumbProps) {
-  const breadcrumbPath = getBreadcrumbPath(slug, sidebarData);
+export function MyBreadcrumb({slug, rooms}: MyBreadcrumbProps) {
+  const breadcrumbPath = getBreadcrumbPath(slug, rooms);
 
   return (
     <Breadcrumb aria-label="Breadcrumb navigation" className="bg-gray-50 px-3 py-2 dark:bg-gray-800">
@@ -43,7 +55,7 @@ export function MyBreadcrumb({slug, sidebarData}: MyBreadcrumbProps) {
           href={item.href} // Menggunakan `href` dari item
           icon={index === 0 ? HiHome : undefined} // Ikon hanya untuk elemen pertama
         >
-          {item.label}
+          {item.name}
         </Breadcrumb.Item>
       ))}
     </Breadcrumb>

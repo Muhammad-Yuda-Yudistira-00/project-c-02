@@ -15,54 +15,48 @@ import Link from 'next/link';
 
 interface RenderSidebarItemsProps {
   parentId: number | null;
-  sidebarData: SidebarItem[];
+  rooms: RoomItem[];
 }
 
-const RenderSidebarItems: React.FC<RenderSidebarItemsProps> = ({ parentId, sidebarData }) => {
+const RenderSidebarItems: React.FC<RenderSidebarItemsProps> = ({ parentId, rooms }) => {
+  if (!rooms) {
+    return null;
+  }
+
+  const filteredRooms = rooms.filter(item => item.parentId === parentId);
+
   return (
     <>
-      {sidebarData
-        .filter(item => item.parent_id === parentId) // Filter berdasarkan parent_id
-        .map(item => {
-          // Mengecek apakah item memiliki anak
-          const hasChildren = sidebarData.some(child => child.parent_id === item.id);
-          if (hasChildren) {
-            return (
-              <Sidebar.Item key={item.id} href={`/user/${item.slug}`} icon={item.icon}>
-                  <SidebarGroup name={item.label} icon={item.icon} defaultOpen={true}>
-                    {/* Panggil fungsi rekursif untuk anak-anak */}
-                    <RenderSidebarItems parentId={item.id} sidebarData={sidebarData} />
-                  </SidebarGroup>
-              </Sidebar.Item>
-            );
-          } else {
-            // Jika tidak ada anak, render item sebagai leaf node
-            return (
-              <Sidebar.Item key={item.id} href={`/user/${item.slug}`} icon={item.icon}>
-                  {item.label}
-              </Sidebar.Item>
-            );
-          }
-        })}
+      {filteredRooms.map(item => (
+        <Sidebar.Item key={item.id} href={`/room/${item.slug}`} icon={HiOutlineCube}>
+          {item.children && item.children.length > 0 ? ( // Periksa children
+            <SidebarGroup name={item.name} icon={HiOutlineCube} defaultOpen={true}>
+              {/* Rekursif dengan children */}
+              <RenderSidebarItems parentId={item.id} rooms={item.children} />
+            </SidebarGroup>
+          ) : (
+            item.name
+          )}
+        </Sidebar.Item>
+      ))}
     </>
   );
 };
 
-interface SidebarItem {
+interface RoomItem {
   id: number;
   parent_id: number | null;
-  label: string;
-  icon: string;
-  href: string;
-  hole: boolean;
+  name: string;
+  category: string;
   slug: string;
+  children: RoomItem[];
 }
 
 interface MySidebarProps {
-  sidebarData: SidebarItem[];
+  rooms: RoomItem[];
 }
 
-export function MySidebar({sidebarData}: MySidebarProps) {
+export function MySidebar({rooms}: MySidebarProps) {
   return (
     <Sidebar aria-label="Sidebar with multi-level dropdown example" className="max-h-screen fixed max-w-min">
       <Sidebar.Items>
@@ -71,7 +65,16 @@ export function MySidebar({sidebarData}: MySidebarProps) {
             Profile
           </Sidebar.Item>
 
-          <RenderSidebarItems parentId={null} sidebarData={sidebarData} />
+          {/* Conditional rendering yang benar */}
+          {rooms === null ? (
+            <div className="text-black">Loading data...</div>
+          ) : (!rooms || rooms.length === 0) ? (
+            <div className="text-black">No rooms available.</div>
+          ) : (
+            <div>
+              <RenderSidebarItems parentId={null} rooms={rooms} />
+            </div>
+          )}
 
         </Sidebar.ItemGroup>
 
