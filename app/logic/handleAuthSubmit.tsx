@@ -30,7 +30,7 @@
         console.log("Data berhasil dikirim:", result);
         // Lakukan sesuatu setelah berhasil (misalnya redirect atau tampilkan pesan)
         localStorage.setItem("user", JSON.stringify(result));
-        router.push('/user/universal-room');
+        router.push('/room/universal-room');
       } else {
         const errorText = await response.text();
         console.error("Gagal mengirim data:", response.statusText, errorText);
