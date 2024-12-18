@@ -52,7 +52,7 @@ export function MyBreadcrumb({slug, rooms}: MyBreadcrumbProps) {
       {breadcrumbPath.map((item, index) => (
         <Breadcrumb.Item
           key={item.id}
-          href={item.href} // Menggunakan `href` dari item
+          href={`/room/${item.slug}`} // Menggunakan `href` dari item
           icon={index === 0 ? HiHome : undefined} // Ikon hanya untuk elemen pertama
         >
           {item.name}

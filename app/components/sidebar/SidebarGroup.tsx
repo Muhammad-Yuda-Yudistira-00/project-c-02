@@ -9,7 +9,7 @@ import { ReactNode } from "react";
 interface SidebarGroupProps {
   children: ReactNode;
   name: string;
-  icon: string;
+  icon: any;
   defaultOpen?: boolean;
 }
 

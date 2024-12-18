@@ -12,21 +12,25 @@ export default function RoomPage()
 {
   const params = useParams(); // Mengambil parameter dari URL
   const activeRoom = params.room;
+  console.log({activeRoom})
 
 
-  const apiUrl: string = process.env.NEXT_PUBLIC_API_URL
-  const apiKey: string = process.env.NEXT_PUBLIC_API_SECRET_KEY
+  const apiUrl: string | undefined = process.env.NEXT_PUBLIC_API_URL
+  const apiKey: string | undefined = process.env.NEXT_PUBLIC_API_SECRET_KEY
   const [rooms, setRooms] = useState(null);
   const [roomLabel, setRoomLabel] = useState("");
 
   useEffect(() => {
     const fetchRooms = async () => {
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      if (apiKey) { // Check if apiKey is defined (not null or undefined)
+        headers.append('X-API-KEY', apiKey);
+      }
+
       const res = await fetch(`${apiUrl}/api/room/list`, { // atau ke URL eksternal, contoh: 'https://api.example.com/data'
           method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-API-KEY': apiKey, // Kirim API Key di header
-          },
+          headers,
         }); // Bisa juga fetch ke external API
       const data = await res.json();
       setRooms(data.data);

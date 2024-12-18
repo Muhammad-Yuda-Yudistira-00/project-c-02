@@ -10,8 +10,9 @@ import {
 } from "react-icons/hi";
 import { BiBuoy } from "react-icons/bi";
 import { twMerge } from "tailwind-merge";
-import SidebarGroup from "./../../components/sidebar/SidebarGroup";
+import SidebarGroup from "@/app/components/sidebar/SidebarGroup";
 import Link from 'next/link';
+import {RoomItem} from '@/app/store/RoomItem';
 
 interface RenderSidebarItemsProps {
   parentId: number | null;
@@ -43,17 +44,8 @@ const RenderSidebarItems: React.FC<RenderSidebarItemsProps> = ({ parentId, rooms
   );
 };
 
-interface RoomItem {
-  id: number;
-  parent_id: number | null;
-  name: string;
-  category: string;
-  slug: string;
-  children: RoomItem[];
-}
-
 interface MySidebarProps {
-  rooms: RoomItem[];
+  rooms: RoomItem[] | null;
 }
 
 export function MySidebar({rooms}: MySidebarProps) {
